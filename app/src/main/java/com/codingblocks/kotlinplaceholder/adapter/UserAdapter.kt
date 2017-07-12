@@ -1,10 +1,12 @@
 package com.codingblocks.kotlinplaceholder.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.codingblocks.kotlinplaceholder.PostActiivty
 import com.codingblocks.kotlinplaceholder.R
 import com.codingblocks.kotlinplaceholder.model.User
 
@@ -32,6 +34,8 @@ class UserAdapter(private val context: Context,
         notifyDataSetChanged()
     }
 
+
+
     override fun onBindViewHolder(holder: UserViewHolder?, position: Int) {
             holder!!.bindUser(users!![position])
     }
@@ -52,6 +56,11 @@ class UserAdapter(private val context: Context,
             thisView.tvUsername.text = user.username
             thisView.tvEmail.text = user.email
             thisView.tvPhone.text = user.phone
+            thisView.setOnClickListener {
+                val i = Intent(context,PostActiivty::class.java)
+                i.putExtra("id",user.id)
+                context.startActivity(i)
+            }
         }
     }
 
